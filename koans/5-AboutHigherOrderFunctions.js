@@ -4,9 +4,9 @@ describe("5. About Higher Order Functions", function () {
     var numbers = [1,2,3];
     var odd = numbers.filter(function (x) { return x % 2 !== 0 });
 
-    expect(odd).toEqual(FILL_ME_IN);
-    expect(odd.length).toBe(FILL_ME_IN);
-    expect(numbers.length).toBe(FILL_ME_IN);
+    expect(odd).toEqual(1,3);
+    expect(odd.length).toBe(2);
+    expect(numbers.length).toBe(3);
   });
 
   it("should use 'map' to transform each element", function () {
@@ -77,11 +77,15 @@ describe("5. About Higher Order Functions", function () {
     // arrayDiff([1,2,2,2,3],[2]) == [1,3]
 
     var arrayDiff = function(array1, array2) {
-      return array1.filter(function(){
+      return array1.filter(function(item){
+        console.log({item});
+        // find not repetitive numbers
         return FILL_ME_IN;
+        //array2.every(iten2 => item != item2);
       });
     };
 
+    //                array1,  array2
     expect(arrayDiff([1,2,3], [1,2])).toEqual([3]);
     expect(arrayDiff([1,2,2,2,3], [2])).toEqual([1,3]);
   });
@@ -103,8 +107,9 @@ describe("5. About Higher Order Functions", function () {
     var myFilter = function(arr, func){
       for(var i =0; i < arr.length; i++) {
         var arrayItem = arr[i];
-        return FILL_ME_IN;
+        func(arrayItem);
       }
+      return
     };
 
     expect(myFilter([1,2,3], (i) => i > 2)).toEqual([3]);
