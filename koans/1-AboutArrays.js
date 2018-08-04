@@ -47,13 +47,13 @@ describe("1. About Arrays", function() {
   it("should slice arrays", function () {
     var array = ["peanut", "butter", "and", "jelly"];
 
-    expect(array.slice(0, 1)).toEqual("peanut", "butter");
-    expect(array.slice(0, 2)).toEqual("peanut", "and");
-    expect(array.slice(2, 2)).toEqual("and", "and");
-    expect(array.slice(2, 20)).toEqual("and", undefined);
-    expect(array.slice(3, 0)).toEqual("jelly", "peanut");
-    expect(array.slice(3, 100)).toEqual("jelly", undefined);
-    expect(array.slice(5, 1)).toEqual(undefined, "butter");
+    expect(array.slice(0, 1)).toEqual["peanut"];
+    expect(array.slice(0, 2)).toEqual["peanut", "butter"];
+    expect(array.slice(2, 2)).toEqual[""];
+    expect(array.slice(2, 20)).toEqual["and","jelly"];
+    expect(array.slice(3, 0)).toEqual[""];
+    expect(array.slice(3, 100)).toEqual["jelly"];
+    expect(array.slice(5, 1)).toEqual[""];
   });
 
   // For more information: https://www.youtube.com/watch?v=YnfwDQ5XYF4
@@ -74,35 +74,36 @@ describe("1. About Arrays", function() {
 
     var copyOfArray = array.slice();
     copyOfArray[3] = "changed in copyOfArray";
-    expect(array[3]).toBe("changed in copyOfArray");
+    expect(array[3]).toBe("three");
   });
 
   it("should push and pop", function () {
     var array = [1, 2];
     array.push(3);
 
-    expect(array).toEqual(FILL_ME_IN);
+    expect(array).toEqual([1,2,3]);
 
     var poppedValue = array.pop();
-    expect(poppedValue).toBe(FILL_ME_IN);
-    expect(array).toEqual(FILL_ME_IN);
+    expect(poppedValue).toBe(3);
+    expect(array).toEqual([1,2]);
   });
 
   it("should know about shifting arrays", function () {
     var array = [1, 2];
 
     array.unshift(3);
-    expect(array).toEqual(FILL_ME_IN);
+    expect(array).toEqual([3,1,2]);
 
     var shiftedValue = array.shift();
-    expect(shiftedValue).toEqual(FILL_ME_IN);
-    expect(array).toEqual(FILL_ME_IN);
+    expect(shiftedValue).toEqual(3);
+    expect(array).toEqual([1,2]);
   });
 
   it("should write a function that returns an array of the first two elements of that array", function () {
     // be sure the function does not modify the original array
     var firstTwoElements = function(array) {
-      return FILL_ME_IN;
+      var newArray = array.slice(0,2);
+      return newArray;
     };
     var firstArray = [1,2,3];
     var secondArray = [7,6,5];
@@ -116,12 +117,19 @@ describe("1. About Arrays", function() {
 
   it("should write a function that returns the 3rd element in an array (or null)", function () {
     var thirdElement = function(array) {
-      return FILL_ME_IN;
+      if (array[2] == null) {
+        return null;
+      }
+      else {
+      var third = array[2];
+      return third;
+      }
     };
 
     expect(thirdElement([1,2,3])).toEqual(3);
     expect(thirdElement([7,6])).toEqual(null);
   });
+
 
   it("should write a function that creates a new array of a certain length", function () {
     //makeArray should return an array;
@@ -129,7 +137,8 @@ describe("1. About Arrays", function() {
     //The elements of that array should be the first parameter
     //This could be done using a for loop or the fill array function
     var makeArray = function(element, length) {
-      return FILL_ME_IN;
+      var array = Array(length).fill(element);
+      return array;
     };
 
     expect(makeArray("hello", 4)).toEqual(["hello", "hello", "hello", "hello"]);
